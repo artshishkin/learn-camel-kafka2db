@@ -34,3 +34,5 @@
     -  path is set in `server.properties`
     -  default is `/tmp/kafka-logs`
     -  located in root (`d:/tmp/kafka-logs`)
+    
+##### 67 - How to Connect Kafka using Camel
