@@ -15,3 +15,22 @@
     -  run `jps`
     -  see `Kafka`
     -  see `QuorumPeerMain`
+
+##### 66 - How to Create Topic, Producer and Consume Messages, Kafka Log Folder
+
+1.  create topic
+    -  `.\bin\windows\kafka-topics.bat --create --topic my-first-topic -zookeeper localhost:2181 --replication-factor 1 --partitions 1`
+    -  `or` (and preferred)
+    -  `.\bin\windows\kafka-topics.bat --create --topic my-first-topic --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1`
+2.  describe topics
+    -  `.\bin\windows\kafka-topics.bat --describe -zookeeper localhost:2181`
+    -  `or` (and preferred)
+    -  `.\bin\windows\kafka-topics.bat --describe --bootstrap-server localhost:9092`
+3.  instantiate a console producer
+    -  `.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic my-first-topic`
+4.  instantiate a console consumer
+    -  `.\bin\windows\kafka-console-consumer.bat  --bootstrap-server localhost:9092 --topic my-first-topic --from-beginning`
+5.  log files
+    -  path is set in `server.properties`
+    -  default is `/tmp/kafka-logs`
+    -  located in root (`d:/tmp/kafka-logs`)
