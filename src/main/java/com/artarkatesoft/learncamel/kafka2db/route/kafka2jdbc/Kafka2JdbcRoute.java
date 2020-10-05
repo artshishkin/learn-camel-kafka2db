@@ -25,7 +25,7 @@ public class Kafka2JdbcRoute extends RouteBuilder {
                 .to("jdbc:myDataSource")
                 .to("sql:select * from messages_kafka")
                 .log("After sql: ${body}")
-                .to("direct:output")
+//                .to("direct:output")
         ;
     }
 }
