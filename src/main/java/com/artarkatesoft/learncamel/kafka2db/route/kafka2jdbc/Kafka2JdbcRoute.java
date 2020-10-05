@@ -1,11 +1,19 @@
 package com.artarkatesoft.learncamel.kafka2db.route.kafka2jdbc;
 
 import com.artarkatesoft.learncamel.kafka2db.processors.InputMessageProcessor;
+import com.artarkatesoft.learncamel.kafka2db.processors.PSQLExceptionProcessor;
 import org.apache.camel.builder.RouteBuilder;
+import org.postgresql.util.PSQLException;
 
 public class Kafka2JdbcRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
+
+        onException(PSQLException.class)
+                .handled(true)
+                .process(new PSQLExceptionProcessor())
+                .log("There was an Exception ${body}");
+
         from("kafka:my-first-topic?brokers=localhost:9092&autoOffsetReset=latest")
                 .log("Message received from Kafka : ${body}")
                 .log("    on the topic ${headers[kafka.TOPIC]}")
